@@ -1,0 +1,71 @@
+body,h1,p,input,div{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1{
+    background-color: rgb(253, 186, 160);
+    margin-top: 40px;
+    max-width: 80%;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    
+}
+
+form{
+    display: flex;
+    background-color: aliceblue;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 20px;
+
+}
+
+p{
+    font-size: 15px;
+}
+.main{
+    font:20px bold;
+    padding-bottom: 15px;
+   
+
+}
+.tyuui{
+    font-size: 10px;
+}
+
+.sab{
+    display: flex;
+    flex-direction: column;
+    padding:10px 20px;
+    margin-bottom: 10px;
+
+}
+
+
+button{
+    width: 100px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 20px;
+    cursor: pointer;
+      
+}
+a {
+    margin:0px 10px 15px 15px;
+    font:bold 10px ;
+    text-decoration: none;
+    text-align: end;
+    cursor: pointer;
+
+    
+}
