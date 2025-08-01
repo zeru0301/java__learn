@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja" xlns:th="www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/css/style.css">
+    <title>Insert title here</title>
+        <script>
+
+// 画面表示（onLoad）に動作する処理群
+document.addEventListener("DOMContentLoaded",event=> {
+    // 変わらない変数constにデリートボタンsって名前を付けて、その中に.deleteBtnを入れた
+    const deleteBtns = document.querySelectorAll(".deleteBtn");
+
+// デリートボタンをループさせてすべてのボタンにイベントリスナーを追加する。
+    deleteBtns.forEach(btn => {
+
+        // クリック時に無名関数を呼び出す
+        btn.addEventListener("click", event=>{
+            let isOk = confirm("削除してもよろしいですか？");
+            if(!isOk){return;}
+
+            // event.target(削除ボタン)の親要素のさらに親要素から、td要素をすべて取り出し、tdListに格納した
+            const tdList = event.target.parentElement.parentElement.querySelectorAll("td");
+
+            // デリートグッズ関数を呼び出し、商品情報を削除する。
+            deleteGoods(tdList);
+
+        });
+
+    });
+
+});
+// デリートグッズ関数
+// 削除ボタンを押した際に呼び出される。
+function deleteGoods(tdList) {
+    const postObj = { "id" : tdList.item(0).innerText };
+
+    // fetch APIを使用し、javaと非同期通信を行う。
+    // SUCCESS時(then):削除完了時、アラートの表示、画面上の商品情報行を削除する。
+    //  ERROR時(catch):error情報をconsoleに出力
+     fetch("/ecsite/admin/api/deleteGoods",{
+        method: "POST" ,
+        headers:{'Content-Type': "application/json"},
+        body: JSON.stringify(postObj),
+     })
+     .then(response => response.text())
+     .then(result =>{
+        alert(`商品[ ${tdList.item(1).innerText}]を削除しました。`);
+        tdList.item(0).parentElement.remove();
+     })
+     .catch(error =>{
+        console.error("Error",error);
+
+     });
+
+
+}
+    </script>
+    
+</head>
+
+<body>
+  <header>
+    <h1>My EC Site -- 管理者ページ</h1>
+  </header>
+
+
+  <table id="adminTable">
+    <thead>
+      <tr>
+        <th>ID</th><th>商品名</th><th>価格</th><th>削除</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr th:each="item: ${goods}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.goodsName}"></td>
+        <td th:text="${item.price}"></td>
+        <td><button class="deleteBtn" type="submit">削除</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <form name="goodsForm" id="adminPage" method="post" action="/ecsite/admin/goodsMst">
+      <button type="submit" th:if="${userName != null}">新規商品追加</button>
+      <input type="hidden" name="userName" th:value="${userName}">
+      <input type="hidden" name="password" th:value="${password}">
+  </form>
+
+
+</body>
+
+
+</html>
