@@ -1,3 +1,4 @@
+
 //複写
 
 import javax.swing.*;       // Swingの部品を使う
