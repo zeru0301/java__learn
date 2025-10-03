@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo</title>
+</head>
+<body>
+    
+	<h1>Hello Java and HTML!!</h1>
+	    <div th:text="${message}"></div>
+	    <div th:each="item : ${listValue}">
+	        <div th:text="${item}"></div>
+	    </div>
+	
+    
+</body>
+</html>

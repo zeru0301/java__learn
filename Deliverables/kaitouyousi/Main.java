@@ -19,7 +19,7 @@ public class Main {
 
         // 令和何年の過去問化を取得
         Scanner scan = new Scanner(System.in);
-        System.out.println("bot:基本情報過去問の年度を令和で教えてください>>");
+        System.out.println("bot:情報セキュリティ過去問題を令和で教えてください>>");
         String name =  scan.nextLine();
         scan.close();
 
