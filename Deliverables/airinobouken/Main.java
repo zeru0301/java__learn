@@ -1,14 +1,21 @@
 package airinobouken;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] ages) {
-        int damage;
-        // あいりのさくせい
 
+        Scanner scan = new Scanner(System.in);
+        // あいりのさくせい
         airi a = new airi();
 
         // エネミーの作成
         kurikuri kuri = new kurikuri();
+     
+
+        // 行動
+        actionAiri actAiri = new actionAiri(a, kuri);
+        actionEnemy actEnemy = new actionEnemy(a, kuri);
 
         System.out.println("""
                 ======================================
@@ -28,33 +35,41 @@ public class Main {
             System.out.println("======================================");
 
             if (a.dex > kuri.dex) {
-                damage = a.attack();
-                kuri.hp -= damage;
+                System.out.println("どう行動しますか？");
+                System.out.println("1,攻撃");
+                System.out.println("2,逃亡");
+                int act0 = scan.nextInt();
 
-                if(kuri.hp <= 0)break;
+                boolean continueBattle = actAiri.act1(act0); // 行動実行
+                if (!continueBattle)
+                    break;
 
-                damage = kuri.attack();
-                a.hp -= damage;
+                if (kuri.hp <= 0)
+                    break;
+
+                actEnemy.act1(1);
 
             } else {
+                actEnemy.act1(1);
 
-                damage = kuri.attack();
-                a.hp -= damage;
+                if (a.hp <= 0)
+                    break;
 
-                if(a.hp <= 0)break;
-
-                damage = a.attack();
-                kuri.hp -= damage;
+                System.out.println("どう行動しますか？");
+                System.out.println("1,攻撃");
+                System.out.println("2,逃亡");
+                int act0 = scan.nextInt();
+                actAiri.act1(act0);
 
             }
-         
 
         } while (kuri.hp > 0 && a.hp > 0);
-        
-        if(a.hp <= 0){
+
+        if (a.hp <= 0) {
             System.out.println("あいりは敗北し家に帰った");
 
-        }else{
+        } else {
+            a.experienceValue(kuri.expValue);
 
             System.out.println("あいりは勝利し冒険を進めた");
 

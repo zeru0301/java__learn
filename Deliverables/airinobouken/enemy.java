@@ -8,13 +8,15 @@ public class enemy {
     int level ;
     int dex ;
     int mp ;
+    int expValue;
 
-    public enemy(String name,int hp, int level,int dex,int mp){
+    public enemy(String name,int hp, int level,int dex,int mp ,int expValue){
         this.name = name;
         this.hp = hp;
         this.level = level;
         this.dex = dex;
         this.mp = mp;
+        this.expValue = expValue;
 
     }
 
