@@ -1,21 +1,32 @@
 package airinobouken;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] ages) {
+    public static void main(String[] ages) throws InterruptedException {
 
         Scanner scan = new Scanner(System.in);
+       
         // あいりのさくせい
-        airi a = new airi();
+        Airi airi = new Airi();
 
-        // エネミーの作成
-        kurikuri kuri = new kurikuri();
-     
+        // 今回登場する敵の取得
+        Kurikuri kuri = new Kurikuri();
+        Panpan pan  = new Panpan();
 
-        // 行動
-        actionAiri actAiri = new actionAiri(a, kuri);
-        actionEnemy actEnemy = new actionEnemy(a, kuri);
+        ArrayList<Enemy> enemies = new ArrayList<>();
+        enemies.add(kuri);
+        enemies.add(pan);
+
+        // エネミーの中から最も早いエネミーを探す。
+
+        Enemy fastEnemy = enemies.get(0);
+         for(Enemy e : enemies) {
+            if(e.dex > fastEnemy.dex) {
+                fastEnemy = e;
+            }
+         }
+
 
         System.out.println("""
                 ======================================
@@ -24,54 +35,103 @@ public class Main {
                 あいりは冒険に出かけた
                 草むらを歩いていると、モンスターに出くわした！！
                 """);
+            Thread.sleep(1000);   
+            
 
         do {
             System.out.println("======================================");
             System.out.println("エネミー" + kuri.name);
             System.out.println("HP" + kuri.hp);
+             System.out.println("エネミー" + pan.name);
+            System.out.println("HP" + pan.hp);
+
 
             System.out.println("あいり");
-            System.out.println("HP" + a.hp);
+            System.out.println("HP" + airi.hp);
             System.out.println("======================================");
+            Thread.sleep(2000);
 
-            if (a.dex > kuri.dex) {
+            if (airi.dex > fastEnemy.dex) {
                 System.out.println("どう行動しますか？");
-                System.out.println("1,攻撃");
+                System.out.println("1,魔法");
                 System.out.println("2,逃亡");
-                int act0 = scan.nextInt();
 
-                boolean continueBattle = actAiri.act1(act0); // 行動実行
-                if (!continueBattle)
+                
+                if(airi.hp <= 0){
                     break;
+                } 
 
-                if (kuri.hp <= 0)
-                    break;
-
-                actEnemy.act1(1);
+                kuri.attack(airi);
+                pan.attack(airi);
 
             } else {
-                actEnemy.act1(1);
 
-                if (a.hp <= 0)
+
+                kuri.attack(airi);
+                pan.attack(airi);
+
+                if(airi.hp <= 0){
                     break;
+                } 
 
                 System.out.println("どう行動しますか？");
-                System.out.println("1,攻撃");
+                System.out.println("1,魔法");
                 System.out.println("2,逃亡");
-                int act0 = scan.nextInt();
-                actAiri.act1(act0);
+
+                int actMain = scan.nextInt();
+                if (actMain == 1) {
+
+                    System.out.println("魔法");
+                    System.out.println("1,ファイアー");
+                    System.out.println("2,ヒール");
+                    int actSab1 = scan.nextInt();
+
+                    if(actSab1 == 1){
+                        System.out.println("対象を選択してください>>");
+                        int i = 1; 
+                        for(Enemy e : enemies){
+                            System.out.println(i +"."+ e.name);
+                            i++;     
+                        }
+                        int actSab2 = scan.nextInt()-1;
+                        switch (actSab1) {
+                        case 1:
+                            airi.attack(enemies.get(actSab2));
+                            break;
+                        
+                        case 2:
+                            airi.heal();
+                            break;
+
+                        default:
+                            break;
+                    }
+                        
+                    }
+    
+                    
+                }
+
+                // 逃亡
+                if (actMain == 2) {
+                       boolean failed = airi.run();
+                        if(failed){
+                            break;
+                        }
+            
+                    }
+
 
             }
 
-        } while (kuri.hp > 0 && a.hp > 0);
+        } while (airi.hp > 0 && (kuri.hp > 0 || pan.hp > 0));
 
-        if (a.hp <= 0) {
+        if (airi.hp <= 0) {
             System.out.println("あいりは敗北し家に帰った");
 
         } else {
-            a.experienceValue(kuri.expValue);
 
-            System.out.println("あいりは勝利し冒険を進めた");
+            System.out.println("あいりは冒険を進めた");
 
         }
 
