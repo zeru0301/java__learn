@@ -17,7 +17,8 @@ public class Airi {
     // コンストラクター
     // これをすることによって複数の人数を呼ぶだけで作成可能
     public Airi() {
-        this.hp = 10;
+        this.level = 3;
+        this.hp = 15;
         this.dex = 5;
         this.mp = 15;
         this.exp = 0;
@@ -43,7 +44,7 @@ public class Airi {
         if (mp >= 2) {
             // 命中率判定
             int judg = random.nextInt(100) + 1;
-            if (judg <= level + 60) {
+            if (judg <= level + 70) {
                 mp -= 2;
                 damage = random.nextInt(level + 4) + 1;
                 System.out.println("あいりは呪文ファイヤを使用した");
@@ -65,15 +66,15 @@ public class Airi {
     }
     // 回復
     public void heal() {
-        if(mp >= 3){
-            mp -=3;
+        if(this.mp >= 3){
+            this.mp -=3;
             System.out.println("あいりは回復魔法を使用した");
             int damage = random.nextInt(level + 4)+1;
-            hp += damage;
+            this.hp += damage;
 
             System.out.println("あいりは" + damage +"点回復した"); 
-            if(maxHp <= hp){
-                hp = maxHp;      
+            if(maxHp <= this.hp){
+                this.hp = maxHp;      
             }
             
         }else{
