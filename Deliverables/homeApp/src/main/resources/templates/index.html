@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http//:www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <script th:src="@{js/script.js}" defer></script>
+    <title>HomeApp-Home</title>
+</head>
+
+<body>
+    <header>
+
+        <h1><a th:href="@{index}">portfolio</a></h1>
+        <!-- ハンバーガーアイコン -->
+        <div class="menuBtn">
+            <span class="menuLine"></span>
+        </div>
+        <div class="homeNav">
+            <nav class="gNav">
+                <ul>
+                    <a th:href="@{index}">
+                        <li>これはナビゲーションです</li>
+                    </a>
+                    <a th:href="@{index}">
+                        <li>これはナビゲーションです</li>
+                    </a>
+                    <a th:href="@{index}">
+                        <li>これはナビゲーションです</li>
+                    </a>
+                    <a th:href="@{index}">
+                        <li>これはナビゲーションです</li>
+                    </a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="intoro fade js-parallax">
+            <h1>SEED</h1>
+            <p>これは私がエンジニアになるために作成した学習の軌跡です</p>
+            <p> 私はこれまでにJava・C#・HTML・CSS・JavaSprict・Sqlを中心に学習をしてきました。</p>
+        </div>
+        <section class="in">
+            <div class="intoroH1 fade js-parallax">
+                <h1>・introduction</h1>
+            </div>
+            <div class="syoukai fade js-parallax">
+                <p>初めまして、森廣和義と申します。</p>
+                <p>私は２０２４年夏よりＩＴ業界を夢見て学習を行ってきました。</p>
+                <p>初めは、フロントエンジニアを目指していましたが、</p>
+                <p>目指した姿はバックエンジニアだったことを知り、</p>
+                <p> java・sqlの学習も行ってきました。</p>
+                <p>その後スタッフサービスへ入職し、ＱＡエンジニアとして活動</p>
+                <p>その間にもＣ＃とjavaのSpringBoot・SQLを学習してきました。</p>
+                <p>まだまだ、未熟ですが頑張っていきたいと思っております。</p>
+
+            </div>
+            <h1>・学習した言語</h1>
+            <div class="fall fade scroll js-parallax">
+                <img th:each="skill : ${skills}" th:src="@{/imgs/{img}(img=${skill.image})}" th:alt="${skill.name}">
+
+            </div>
+        </section>
+        <search class="pr">
+            <div class="syoukai fade js-parallax">
+                <p>まだまだ未熟物ですが、自分をここまで育ててくれた方々のためにも努力して力を身に着けていけたらと思っています。</p>
+                <p>この下には自分が作成した作品の中でも自信作を乗せています。</p>
+                <p>ギットハブにつながっておりますのでお時間ございましたら見てやってください。</p>
+            </div>
+
+            <div class="carousel ">
+                <div class="imgBox">
+                    <a th:each="work : ${works}" th:href="${work.workUrl}" target="_blank">
+                        <img th:src="@{/imgs/{img}(img=${work.image})}" th:alt="${work.name}">
+                    </a>
+
+                </div>
+                <div class="nav">
+                    <button style="opacity: 0;" class="prev" disabled>◀</button>
+                    <ol class="indicator"></ol>
+                    <button style="opacity: 0;" class="next" disabled>▶</button>
+                </div>
+            </div>
+            <div class="syoukai fade js-parallax">
+                <p>以上、ご閲覧いただきありがとうございました。</p>
+            </div>
+        </search>
+    </main>
+    <footer>
+        <p>&copy; 2025-portfolio-</p>
+        <p>CreateByZeru</p>
+    </footer>
+
+
+
+
+</body>
+
+</html>

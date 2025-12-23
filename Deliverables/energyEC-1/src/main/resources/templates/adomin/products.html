@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <title>adomin</title>
+</head>
+
+<body>
+    <h1>adomin</h1>
+    <div class="cont1">
+        <div class="adomin-row">
+            <div class="cont2">
+                <form th:action="@{/addProduct}" method="post">
+                    <div class="cont3">
+                        <h2>商品追加</h2>
+                    </div>
+                    <div class="cont3">
+                        <h3>商品名:</h3>
+                        <input type="text" name="productName">
+
+                        <h3>在庫:</h3>
+                        <input type="number" name="stock">
+                    </div>
+                    <div class="cont3">
+                        <h3>商品価格:</h3>
+                        <input type="number" name="productPrice">
+
+                        <h3>商品カテゴリ1or2:</h3>
+                        <input type="number" name="categoryId">
+
+                        <h3>商品img:</h3>
+                        <input type="text" name="productImages">
+                        <h3>商品紹介:</h3>
+                        <input type="text" name="productDescription">
+                        <button type="submit">更新</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="cont2">
+                <div class="cont3">
+                    <form th:action=" @{/productManager}" method="post">
+                        <h2>商品在庫</h2>
+                </div>
+                <div class="cont3">
+                    <h3>商品ＩＤ:</h3>
+                    <input type="number" name="productId">
+                    <h3>商品増減:</h3>
+                    <input type="number" name="stock">
+                </div>
+                <button>追加</button>
+                </form>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

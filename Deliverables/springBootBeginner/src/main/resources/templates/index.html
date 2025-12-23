@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th ="http//:www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelloSpringBoot</title>
+</head>
+<body>
+    <h1>htmlに値を渡す</h1>
+    <p>hello spring boot</p>
+	<p th:text="'Hello' + ${name}"></p>
+
+    <h1>画面から値を受け取る</h1>
+    <form action="/hello" method="post">
+        <input type="text" name="userName">
+        <button type="submit">送信</button>
+
+    </form>
+	<ul>
+		<li th:each="item :${items}" th:text="${item}"></li>
+	</ul>
+</body>
+</html>

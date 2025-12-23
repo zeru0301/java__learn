@@ -1,0 +1,77 @@
+body {
+    background-color: rgb(216, 216, 216);
+}
+
+.admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(233, 233, 233, 0.877);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20%;
+    box-shadow: 1px 0.1px 0.1px 1px rgba(226, 226, 226, 0.562);
+
+}
+
+h3 {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px;
+    border: 1px rgb(226, 226, 226);
+    box-shadow: 1px 0.1px 0.1px 1px rgba(226, 226, 226, 0.562);
+
+}
+
+h1{
+    font-size: 30px;
+    padding-left: 10%;
+}
+.cont1 {
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+    margin: 40px;
+    padding: 20px;
+    align-items: center;
+
+}
+.adomin-row{
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+
+}
+
+.cont2 {
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+.cont3{
+    display: flex;
+    flex-direction: column;
+}
+.cont2 h3{
+    padding-right: 20px;
+
+}
+.cont4{
+    display: flex;
+    flex-direction: row;
+
+}
+input{
+    width: 90%;
+}
+.cont4 button{
+    padding:0 20px;
+    margin: 15px;
+}
